@@ -16,6 +16,7 @@
         <activity
             android:name="pl.edu.agh.inz.gra1.MainActivity"
             android:label="@string/app_name" >
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +29,8 @@
         <activity
             android:name=".Kolo">
         </activity>
+        <activity android:name="org.achartengine.GraphicalActivity" />
+       
     </application>
 
 </manifest>

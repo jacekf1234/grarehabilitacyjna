@@ -104,11 +104,6 @@ public class PaintView extends View{
         }    	
         */
     }
-       
-    @Override
-	protected void onSizeChanged(int s, int w, int staras, int staraw){
-    	
-    }
     
     
     @Override

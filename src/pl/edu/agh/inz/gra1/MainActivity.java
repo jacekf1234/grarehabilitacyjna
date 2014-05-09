@@ -36,6 +36,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(intencja);
 		}
 	    
+	    private void wyswietlWykres(View view) {
+	    	LineGraph line = new LineGraph();
+	    	Intent intencja = line.getIntent(this);
+			startActivity(intencja);
+
+	    }
+	    
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_main);
@@ -46,6 +53,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			zapiszWyniki.setOnClickListener(this);
 	        View wczytajWyniki = this.findViewById(R.id.button3);
 	        wczytajWyniki.setOnClickListener(this);		
+	        View zakoncz = this.findViewById(R.id.button4);
+	        zakoncz.setOnClickListener(this);
 		}
 
 		public void onClick(View v){
@@ -57,6 +66,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				uruchomKolo();
 				break;
 			case R.id.button3:
+				wyswietlWykres(v);
+				break;
+			case R.id.button4:
 				finish();
 				break;
 		}
