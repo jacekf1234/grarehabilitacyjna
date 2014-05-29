@@ -15,38 +15,47 @@
 	    <Button
 	        android:id="@+id/button1"
 	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_height="100dp"
 	        android:layout_alignParentTop="true"
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="47dp"
+	        android:textSize="30dp"
+	        android:background="@color/buttonColor1"
 	        android:text="Ślad" />
 	
 	    <Button
 	        android:id="@+id/button2"
 	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_height="100dp"
 	        android:layout_below="@+id/button1"
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="24dp"
+	        android:textSize="30dp"
+	        android:background="@color/buttonColor2"
 	        android:text="Koło" />
 	
 	    <Button
 	        android:id="@+id/button3"
 	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_height="100dp"
 	        android:layout_below="@+id/button2"
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="24dp"
+	        android:textSize="30dp"
+	        android:background="@color/buttonColor3"
 	        android:text="Wykres" />
 	    
 	    <Button
 	        android:id="@+id/button4"
 	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_height="100dp"
 	        android:layout_below="@+id/button3"
 	        android:layout_centerHorizontal="true"
 	        android:layout_marginTop="24dp"
-	        android:text="Koniec" />
+	        android:textSize="30dp"
+	        android:background="@color/buttonColor4"
+	        android:text="Koniec"
+	        android:onClick="runSea" />
 	    
 	</LinearLayout>   
 

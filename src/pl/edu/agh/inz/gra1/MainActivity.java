@@ -25,6 +25,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	        
 	    }*/
 	    
+	    private void runSea() {
+	    	Intent intent = new Intent(MainActivity.this, Sea.class);
+			startActivity(intent);
+	    }
+	    
 	    private void uruchomSlad() {
 	    //	okienka = new Okienka(this);
 			Intent intencja = new Intent(MainActivity.this, Slad.class);
@@ -40,7 +45,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	    	LineGraph line = new LineGraph();
 	    	Intent intencja = line.getIntent(this);
 			startActivity(intencja);
-
 	    }
 	    
 		protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +73,8 @@ public class MainActivity extends Activity implements OnClickListener {
 				wyswietlWykres(v);
 				break;
 			case R.id.button4:
-				finish();
+				runSea();
+		//		System.exit(0);
 				break;
 		}
 }}
