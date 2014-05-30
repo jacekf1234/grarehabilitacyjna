@@ -54,8 +54,18 @@
 	        android:layout_marginTop="24dp"
 	        android:textSize="30dp"
 	        android:background="@color/buttonColor4"
-	        android:text="Koniec"
-	        android:onClick="runSea" />
+	        android:text="Połowiczny paraliż" />
+	    
+	    <Button
+	        android:id="@+id/button5"
+	        android:layout_width="fill_parent"
+	        android:layout_height="100dp"
+	        android:layout_below="@+id/button4"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="24dp"
+	        android:textSize="30dp"
+	        android:background="@color/buttonColor5"
+	        android:text="Wyloguj" />
 	    
 	</LinearLayout>   
 

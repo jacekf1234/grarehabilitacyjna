@@ -29,6 +29,7 @@ public class Login_menuActivity extends Activity implements OnClickListener {
 			showLogin();
 			break;
 		case R.id.buttonKoniec:
+			finish();
 			System.exit(0);
 			break;
 	}

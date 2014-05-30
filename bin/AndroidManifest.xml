@@ -36,6 +36,17 @@
         <activity
             android:name=".Sea"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".Login_menuActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Login"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Registration"
+            android:screenOrientation="landscape" />
+        
+        
        
     </application>
 

@@ -57,8 +57,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			zapiszWyniki.setOnClickListener(this);
 	        View wczytajWyniki = this.findViewById(R.id.button3);
 	        wczytajWyniki.setOnClickListener(this);		
-	        View zakoncz = this.findViewById(R.id.button4);
-	        zakoncz.setOnClickListener(this);
+	        View polparaliz = this.findViewById(R.id.button4);
+	        polparaliz.setOnClickListener(this);
+	        View wyloguj = this.findViewById(R.id.button5);
+	        wyloguj.setOnClickListener(this);
 		}
 
 		public void onClick(View v){
@@ -74,7 +76,16 @@ public class MainActivity extends Activity implements OnClickListener {
 				break;
 			case R.id.button4:
 				runSea();
-		//		System.exit(0);
+				break;
+			case R.id.button5:
+				goLogin();
+			//	finish();
 				break;
 		}
-}}
+}
+
+		private void goLogin() {
+			Intent intencja = new Intent(MainActivity.this, Login_menuActivity.class);
+			startActivity(intencja);
+			
+		}}
