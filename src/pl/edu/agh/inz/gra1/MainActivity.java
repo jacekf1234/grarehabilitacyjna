@@ -31,7 +31,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	    }
 	    
 	    private void uruchomSlad() {
-	    //	okienka = new Okienka(this);
 			Intent intencja = new Intent(MainActivity.this, Slad.class);
 			startActivity(intencja);
 		}
@@ -85,7 +84,7 @@ public class MainActivity extends Activity implements OnClickListener {
 }
 
 		private void goLogin() {
-			Intent intencja = new Intent(MainActivity.this, Login_menuActivity.class);
+			Intent intencja = new Intent(MainActivity.this, AdminActivity.class);
 			startActivity(intencja);
 			
 		}}

@@ -37,7 +37,7 @@
             android:name=".Sea"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Login_menuActivity"
+            android:name=".AdminActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".Login"

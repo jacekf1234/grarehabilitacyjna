@@ -1,0 +1,73 @@
+package pl.edu.agh.inz.gra1;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+
+public class AdminActivity extends Activity implements OnClickListener {
+
+	ListView list;
+	EditText loginUser, nameUser, surnameUser;
+	ArrayList<String> listItems = new ArrayList<String>();
+	ArrayAdapter<String> adapter;
+	Map<String, User> usersMap = new HashMap<String, User>();
+
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_admin);
+
+		loginUser = (EditText) this.findViewById(R.id.etLogin);
+		nameUser = (EditText) this.findViewById(R.id.etName);
+		surnameUser = (EditText) this.findViewById(R.id.etSurname);
+		View bAddUser = this.findViewById(R.id.buttonAdd);		
+		View bRemoveUser = this.findViewById(R.id.buttonRemove);
+		list = (ListView) this.findViewById(R.id.lvUsers);
+		
+		bAddUser.setOnClickListener(this);
+		bRemoveUser.setOnClickListener(this);
+		list.setOnItemClickListener(list.getOnItemClickListener());
+		
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1);
+		list.setAdapter(adapter);
+		
+	}
+
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.buttonAdd:
+			addUser(view);
+			break;
+		case R.id.buttonRemove:
+			removeUser(view);
+			break;
+		// case R.id.buttonKoniec:
+		// finish();
+		// System.exit(0);
+		// break;
+		}
+	}
+
+	public void addUser(View view) {
+		User user = new User();
+		user.setLogin(loginUser.getText().toString());
+		user.setName(nameUser.getText().toString());
+		user.setSurname(surnameUser.getText().toString());
+		usersMap.put(user.getLogin(), user);
+		adapter.add(user.getLogin());
+		list.setAdapter(adapter);		
+	}
+	
+	public void removeUser(View view) {
+		usersMap.remove(loginUser.getText().toString());
+		adapter.remove(loginUser.getText().toString());
+		list.setAdapter(adapter);
+	}
+}
