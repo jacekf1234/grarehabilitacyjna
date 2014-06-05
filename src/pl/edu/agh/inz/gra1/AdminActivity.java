@@ -62,12 +62,20 @@ public class AdminActivity extends Activity implements OnClickListener {
 		user.setSurname(surnameUser.getText().toString());
 		usersMap.put(user.getLogin(), user);
 		adapter.add(user.getLogin());
-		list.setAdapter(adapter);		
+		list.setAdapter(adapter);
+		cleanEditText();
 	}
 	
 	public void removeUser(View view) {
 		usersMap.remove(loginUser.getText().toString());
 		adapter.remove(loginUser.getText().toString());
 		list.setAdapter(adapter);
+		cleanEditText();
+	}
+	
+	private void cleanEditText() {
+		loginUser.setText("");
+		nameUser.setText("");
+		surnameUser.setText("");
 	}
 }
