@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -37,6 +38,17 @@ public class AdminActivity extends Activity implements OnClickListener {
 		
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1);
 		list.setAdapter(adapter);
+		
+		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+		      @Override
+		      public void onItemClick(AdapterView<?> parent, final View view,
+		          int position, long id) {
+		        final String item = (String) parent.getItemAtPosition(position);
+		        selected(item);
+		      }
+
+		    });
 		
 	}
 
@@ -71,6 +83,13 @@ public class AdminActivity extends Activity implements OnClickListener {
 		adapter.remove(loginUser.getText().toString());
 		list.setAdapter(adapter);
 		cleanEditText();
+	}
+	
+	private void selected(String login) {
+		User user = usersMap.get(login);
+		loginUser.setText(user.getLogin());
+		nameUser.setText(user.getName());
+		surnameUser.setText(user.getSurname());
 	}
 	
 	private void cleanEditText() {
