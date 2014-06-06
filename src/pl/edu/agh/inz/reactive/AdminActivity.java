@@ -1,8 +1,11 @@
 package pl.edu.agh.inz.reactive;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.j256.ormlite.dao.Dao;
 
 import pl.edu.agh.inz.gra1.R;
 import android.app.Activity;
@@ -21,6 +24,9 @@ public class AdminActivity extends Activity implements OnClickListener {
 	ArrayList<String> listItems = new ArrayList<String>();
 	ArrayAdapter<String> adapter;
 	Map<String, User> usersMap = new HashMap<String, User>();
+	Dao<User, String> userDao;
+	DatabaseHelper databaseHelper = DatabaseHelper.getHelper(this);
+	AndroidBaseManager baseManager = new AndroidBaseManager(userDao);
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,6 +83,13 @@ public class AdminActivity extends Activity implements OnClickListener {
 		adapter.add(user.getLogin());
 		list.setAdapter(adapter);
 		cleanEditText();
+		
+		try {
+			baseManager.addNewUser(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void removeUser(View view) {
