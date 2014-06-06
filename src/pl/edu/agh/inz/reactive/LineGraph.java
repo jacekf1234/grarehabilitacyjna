@@ -1,4 +1,4 @@
-package pl.edu.agh.inz.gra1;
+package pl.edu.agh.inz.reactive;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;

@@ -1,5 +1,6 @@
-package pl.edu.agh.inz.gra1;
+package pl.edu.agh.inz.reactive;
 
+import pl.edu.agh.inz.gra1.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

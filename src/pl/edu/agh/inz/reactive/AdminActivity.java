@@ -1,9 +1,10 @@
-package pl.edu.agh.inz.gra1;
+package pl.edu.agh.inz.reactive;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import pl.edu.agh.inz.gra1.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;

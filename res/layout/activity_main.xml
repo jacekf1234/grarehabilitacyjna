@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="30dp"
-    tools:context="pl.edu.agh.inz.gra1.MainActivity">
+    tools:context="pl.edu.agh.inz.reactive.MainActivity">
 
    <LinearLayout
 	    android:orientation="vertical"
