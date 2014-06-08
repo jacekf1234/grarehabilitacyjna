@@ -56,37 +56,30 @@ public class MainActivity extends Activity implements OnClickListener {
 			} else {
 				labelUser = "Gość";
 			}
+						
 			
-			View nowaGra = this.findViewById(R.id.button1);
-			nowaGra.setOnClickListener(this);
-			View zapiszWyniki = this.findViewById(R.id.button2);
-			zapiszWyniki.setOnClickListener(this);
+			View gra1 = this.findViewById(R.id.imgvGra1);
+			gra1.setOnClickListener(this);
+			View gra2 = this.findViewById(R.id.imgvGra2);
+			gra2.setOnClickListener(this);
 	        View wczytajWyniki = this.findViewById(R.id.button3);
-	        wczytajWyniki.setOnClickListener(this);		
-	        View polparaliz = this.findViewById(R.id.button4);
-	        polparaliz.setOnClickListener(this);
+	        wczytajWyniki.setOnClickListener(this);
 	        View wyloguj = this.findViewById(R.id.button5);
 	        wyloguj.setOnClickListener(this);
 	        TextView labelTextView = (TextView) this.findViewById(R.id.tvLoginUser);
-	        labelTextView.setText("Zalogowano jako: " + labelUser);
+	        labelTextView.setText(labelUser);
 	        
 	        
 		}
 
 		public void onClick(View v){
 			switch(v.getId()){
-			case R.id.button1:			
-				uruchomSlad();
-				break;
-			case R.id.button2:
-				uruchomKolo();
-				break;
+			case R.id.imgvGra1:			
+				runSea();
+				break;			
 			case R.id.button3:
 				wyswietlWykres(v);
-				break;
-			case R.id.button4:
-				runSea();
-				break;
+				break;			
 			case R.id.button5:
 				
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
