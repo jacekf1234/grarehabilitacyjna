@@ -39,7 +39,8 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:textSize="30dp"
-		        android:layout_weight="3" />	 
+		        android:layout_weight="3"
+		        android:hint="Login" />	 
 	    
 	    </LinearLayout>
 	    
@@ -65,7 +66,8 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:textSize="30dp"
-		        android:layout_weight="3"/>	 
+		        android:layout_weight="3"
+		        android:hint="Name" />	 
 	    
 	    </LinearLayout>
 	    
@@ -91,7 +93,8 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:textSize="30dp"
-		        android:layout_weight="3"/>	 
+		        android:layout_weight="3"
+		        android:hint="Surname" />	 
 	    
 	    </LinearLayout>
 	    
@@ -101,16 +104,31 @@
 	        android:orientation="horizontal"
 	        android:layout_gravity="center_horizontal"
 	        android:layout_marginTop="20dp"
-	        android:layout_below="@+id/linear2"
+	        android:layout_below="@+id/linear3"
 	        android:id="@+id/linear4" >
+		    
+	        <Button
+				android:id="@+id/buttonLogin"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="2"
+				android:layout_marginTop="30dp"
+				android:layout_marginLeft="10dp"
+	    		android:layout_marginRight="10dp"
+				android:textSize="30dp"
+				android:background="@color/buttonLogin"
+				android:text="Zaloguj" />
 	    
 	        <Button
 		        android:id="@+id/buttonAdd"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
-		        android:layout_marginTop="50dp"
+		        android:layout_marginTop="30dp"
+		        android:layout_marginLeft="10dp"
+	    		android:layout_marginRight="10dp"
 		        android:textSize="30dp"
+		        android:background="@color/buttonDodaj"
 		        android:text="Dodaj" />
 	        
 	        <Button
@@ -119,10 +137,13 @@
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
 		        android:layout_marginTop="30dp"
+		        android:layout_marginLeft="10dp"
+	    		android:layout_marginRight="10dp"
 		        android:textSize="30dp"
+		        android:background="@color/buttonUsun"
 		        android:text="Usuń" />
 	    
-	    </LinearLayout>
+	    </LinearLayout>	    
     
     </LinearLayout>
 

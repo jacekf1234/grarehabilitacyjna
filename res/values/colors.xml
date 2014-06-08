@@ -5,7 +5,9 @@
     <color name="buttonColor3">#ff66cc</color>
     <color name="buttonColor4">#ffcc00</color>
     <color name="buttonColor5">#855E42</color>
-     <color name="buttonShadow">#000000</color>
+    <color name="buttonLogin">#00BFFF</color>
+    <color name="buttonDodaj">#7CFC00</color>
+    <color name="buttonUsun">#FF0000</color>
     
     
 </resources>

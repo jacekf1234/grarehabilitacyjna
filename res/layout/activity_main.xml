@@ -7,18 +7,26 @@
     tools:context="pl.edu.agh.inz.reactive.MainActivity">
 
    <LinearLayout
-	    android:orientation="vertical"
-	    android:layout_height="fill_parent"
-	    android:layout_width="fill_parent"
-	    android:layout_gravity="center" >
-	    
+		android:orientation="vertical"
+		android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+		android:layout_gravity="center" >
+		
+		<TextView
+			android:id="@+id/tvLoginUser"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20dp"        
+			android:text="Zalogowano jako:" />    
+              
+       
 	    <Button
 	        android:id="@+id/button1"
 	        android:layout_width="fill_parent"
 	        android:layout_height="100dp"
 	        android:layout_alignParentTop="true"
 	        android:layout_centerHorizontal="true"
-	        android:layout_marginTop="47dp"
+	        android:layout_marginTop="24dp"
 	        android:textSize="30dp"
 	        android:background="@color/buttonColor1"
 	        android:text="Ślad" />

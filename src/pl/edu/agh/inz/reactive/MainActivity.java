@@ -2,12 +2,17 @@ package pl.edu.agh.inz.reactive;
 
 import pl.edu.agh.inz.gra1.R;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
 	 
@@ -15,16 +20,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	    Okienka okienka;
 	    Context ctx;
 	    RadioGroup radioGroup;
-	 /*
-	    public void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.activity_main);
-	        okienka = (Okienka) findViewById(R.id.okienka);
-	    //    paintView = (PaintView) findViewById(R.id.paintView);
-	        ctx = getApplicationContext();
-	        
-	        
-	    }*/
+	    String labelUser;
+	    EditText etPassword;
+	    
+
+	    
 	    
 	    private void runSea() {
 	    	Intent intent = new Intent(MainActivity.this, Sea.class);
@@ -51,6 +51,12 @@ public class MainActivity extends Activity implements OnClickListener {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_main);
 			
+			if (getIntent().getStringExtra("login") != null) {
+				labelUser = getIntent().getStringExtra("login") + " (" + getIntent().getStringExtra("name") + " " + getIntent().getStringExtra("surname") + ")";
+			} else {
+				labelUser = "Gość";
+			}
+			
 			View nowaGra = this.findViewById(R.id.button1);
 			nowaGra.setOnClickListener(this);
 			View zapiszWyniki = this.findViewById(R.id.button2);
@@ -61,6 +67,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	        polparaliz.setOnClickListener(this);
 	        View wyloguj = this.findViewById(R.id.button5);
 	        wyloguj.setOnClickListener(this);
+	        TextView labelTextView = (TextView) this.findViewById(R.id.tvLoginUser);
+	        labelTextView.setText("Zalogowano jako: " + labelUser);
+	        
+	        
 		}
 
 		public void onClick(View v){
@@ -78,14 +88,26 @@ public class MainActivity extends Activity implements OnClickListener {
 				runSea();
 				break;
 			case R.id.button5:
-				goLogin();
-			//	finish();
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				LayoutInflater inflater = this.getLayoutInflater();
+				builder.setView(inflater.inflate(R.layout.dialog_password, null)).setPositiveButton("OK", new DialogInterface.OnClickListener() {		              
+		               public void onClick(DialogInterface dialog, int id) {
+		            	   if (etPassword.getText().toString().equals("admin")) {
+		            		   	goLogin();
+		            	   }                
+		               }
+		           });
+				AlertDialog dialog = builder.create();
+				dialog.show();	
+				etPassword = (EditText) dialog.findViewById(R.id.password);				
 				break;
 		}
 }
 
 		private void goLogin() {
-			Intent intencja = new Intent(MainActivity.this, AdminActivity.class);
+			Intent intencja = new Intent(this, AdminActivity.class);
+			finish();
 			startActivity(intencja);
 			
 		}}

@@ -39,13 +39,8 @@
         <activity
             android:name="pl.edu.agh.inz.reactive.AdminActivity"
             android:screenOrientation="landscape" />
-        <activity
-            android:name="pl.edu.agh.inz.reactive.Login"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name="pl.edu.agh.inz.reactive.Registration"
-            android:screenOrientation="landscape" />
         
+              
         
        
     </application>
