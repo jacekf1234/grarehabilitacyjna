@@ -1,6 +1,5 @@
 package pl.edu.agh.inz.reactive;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +7,7 @@ import java.util.Map;
 import pl.edu.agh.inz.gra1.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -22,6 +23,7 @@ public class AdminActivity extends Activity implements OnClickListener {
 
 	ListView list;
 	EditText loginUser, nameUser, surnameUser;
+	TextView information;
 	ArrayList<String> listItems = new ArrayList<String>();
 	ArrayAdapter<String> adapter;
 	Map<String, User> usersMap = new HashMap<String, User>();
@@ -46,6 +48,7 @@ public class AdminActivity extends Activity implements OnClickListener {
 		bRemoveUser = this.findViewById(R.id.buttonRemove);
 		bLoginUser = this.findViewById(R.id.buttonLogin);
 		list = (ListView) this.findViewById(R.id.lvUsers);
+		information = (TextView) this.findViewById(R.id.tvInformation);
 		
 		bAddUser.setOnClickListener(this);
 		bRemoveUser.setOnClickListener(this);
@@ -60,8 +63,7 @@ public class AdminActivity extends Activity implements OnClickListener {
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 				final String item = (String) parent.getItemAtPosition(position);
-				selected(item);
-								
+				selected(item);								
 			}
 		});
 		
@@ -77,34 +79,55 @@ public class AdminActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.buttonLogin:
 			loginUser(view);
-		//	finish();
-		// System.exit(0);
+			break;
+		case R.id.etLogin:
+			activeText(view);
+			break;
+		case R.id.etName:
+			activeText(view);
+			break;
+		case R.id.etSurname:
+			activeText(view);
 			break;
 		}
 	}
 
 	public void addUser(View view) {
-		User user = new User();
-		user.setLogin(loginUser.getText().toString());
-		user.setName(nameUser.getText().toString());
-		user.setSurname(surnameUser.getText().toString());
-		usersMap.put(user.getLogin(), user);
-		adapter.add(user.getLogin());
-		list.setAdapter(adapter);
-		cleanEditText();
 		
-//		try {
-//			baseManager.addNewUser(user);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
+		if ((loginUser.length() != 0) && (nameUser.length() != 0) && (surnameUser.length() != 0)) {
+		
+			User user = new User();
+			user.setLogin(loginUser.getText().toString());
+			user.setName(nameUser.getText().toString());
+			user.setSurname(surnameUser.getText().toString());
+			usersMap.put(user.getLogin(), user);
+			adapter.add(user.getLogin());
+			list.setAdapter(adapter);
+			cleanEditText();
+			
+			information.setText("Dodano użytkownika "+user.getLogin());
+			information.setTextColor(Color.GREEN);
+			
+//			try {
+	//			baseManager.addNewUser(user);
+	//		} catch (SQLException e) {
+	//			// TODO Auto-generated catch block
+	//			e.printStackTrace();
 //		}
+		} else {
+			information.setText("Aby dodać nowego użytkownika wypełnij wszystkie pola");
+			information.setTextColor(Color.RED);
+		}
+		
+
 	}
 	
 	public void removeUser(View view) {
 		usersMap.remove(loginUser.getText().toString());
 		adapter.remove(loginUser.getText().toString());
 		list.setAdapter(adapter);
+		information.setText("Usunięto użytkownika "+loginUser.getText().toString());
+		information.setTextColor(Color.GREEN);
 		cleanEditText();
 	}
 	
@@ -114,25 +137,35 @@ public class AdminActivity extends Activity implements OnClickListener {
 		nameUser.setText(user.getName());
 		surnameUser.setText(user.getSurname());
 		
-	
-		//when user can't set 
-//		loginUser.setEnabled(false);
-//		nameUser.setEnabled(false);
-//		surnameUser.setEnabled(false);
-//		bAddUser.setClickable(false);		
+		bAddUser.setVisibility(1);
+		bLoginUser.setVisibility(0);
+		bRemoveUser.setVisibility(0);
+				
+		information.setText("");
 	}
 	
-	public void loginUser(View view) {		
-		cel.putExtra("login", loginUser.getText().toString());
-		cel.putExtra("name", nameUser.getText().toString());
-		cel.putExtra("surname", surnameUser.getText().toString());
-		finish();
-		startActivity(cel);
+	public void loginUser(View view) {	
+		if ((loginUser.length() != 0) && (nameUser.length() != 0) && (surnameUser.length() != 0)) {
+			cel.putExtra("login", loginUser.getText().toString());
+			cel.putExtra("name", nameUser.getText().toString());
+			cel.putExtra("surname", surnameUser.getText().toString());
+			finish();
+			startActivity(cel);
+		} else {
+			information.setText("Wybierz użytkownika");
+			information.setTextColor(Color.RED);
+		}
 	}
 	
 	private void cleanEditText() {
 		loginUser.setText("");
 		nameUser.setText("");
 		surnameUser.setText("");
+	}
+	
+	private void activeText(View view) {
+		bAddUser.setVisibility(0);
+		bLoginUser.setVisibility(1);
+		bRemoveUser.setVisibility(1);
 	}
 }

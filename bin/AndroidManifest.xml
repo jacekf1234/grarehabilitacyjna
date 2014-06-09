@@ -25,12 +25,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="pl.edu.agh.inz.reactive.Slad"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name="pl.edu.agh.inz.reactive.Kolo"
-            android:screenOrientation="landscape" />
-        <activity
             android:name="org.achartengine.GraphicalActivity"
             android:screenOrientation="landscape" />
         <activity
@@ -38,9 +32,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name="pl.edu.agh.inz.reactive.AdminActivity"
-            android:screenOrientation="landscape" />
-        
-              
+            android:screenOrientation="landscape" />   
         
        
     </application>
