@@ -6,6 +6,16 @@ public class User {
 	String login;	
 	String name;	
 	String surname;
+	
+	public User(){
+		
+	}
+	
+	public User(String login, String name, String surname) {
+		this.login = login;
+		this.name = name;
+		this.surname = surname;
+	}
 
 	public String getLogin() {
 		return login;

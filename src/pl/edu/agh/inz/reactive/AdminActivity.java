@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class AdminActivity extends Activity implements OnClickListener {
 	View bAddUser, bRemoveUser, bLoginUser;
 	Bundle bundle;
 	Intent cel;
+	boolean newfl = true;
 	
 	DatabaseManager db;
 	
@@ -49,6 +51,30 @@ public class AdminActivity extends Activity implements OnClickListener {
 		bAddUser.setOnClickListener(this);
 		bRemoveUser.setOnClickListener(this);
 		bLoginUser.setOnClickListener(this);
+		loginUser.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+		    @Override
+		    public void onFocusChange(View v, boolean hasFocus) {
+		        if(hasFocus) {
+		            activeText(false);
+		        }
+		    }
+		});
+		nameUser.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+		    @Override
+		    public void onFocusChange(View v, boolean hasFocus) {
+		        if(hasFocus) {
+		            activeText(false);
+		        }
+		    }
+		});
+		surnameUser.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+		    @Override
+		    public void onFocusChange(View v, boolean hasFocus) {
+		        if(hasFocus) {
+		            activeText(false);
+		        }
+		    }
+		});
 		list.setOnItemClickListener(list.getOnItemClickListener());
 		
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1);
@@ -65,6 +91,10 @@ public class AdminActivity extends Activity implements OnClickListener {
 		});
 		
 		db = new DatabaseManager(this);
+		if (db.dbReturnUsers().isEmpty()) {
+			User guest = new User("Gość", "Profil", "domyślny");
+			db.dbAddUser(guest);
+		}
 		for (User u: db.dbReturnUsers()) {
 			listItems.add(u.getLogin());
 			usersMap.put(u.getLogin(), u);
@@ -84,15 +114,6 @@ public class AdminActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.buttonLogin:
 			loginUser(view);
-			break;
-		case R.id.etLogin:
-			activeText(false);
-			break;
-		case R.id.etName:
-			activeText(false);
-			break;
-		case R.id.etSurname:
-			activeText(false);
 			break;
 		}
 	}
@@ -174,7 +195,14 @@ public class AdminActivity extends Activity implements OnClickListener {
 			bAddUser.setVisibility(View.INVISIBLE);
 			bLoginUser.setVisibility(View.VISIBLE);
 			bRemoveUser.setVisibility(View.VISIBLE);
+			newfl = true;
 		} else {
+			if (newfl) {
+				loginUser.setText("");
+				nameUser.setText("");
+				surnameUser.setText("");
+				newfl = false;
+			}
 			bAddUser.setVisibility(View.VISIBLE);
 			bLoginUser.setVisibility(View.INVISIBLE);
 			bRemoveUser.setVisibility(View.INVISIBLE);
