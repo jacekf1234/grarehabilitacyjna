@@ -66,8 +66,7 @@ public class Sea extends Activity {
 		Toast toast = Toast.makeText(this, "Runda "+levelNo+"\nWynik: "+score, Toast.LENGTH_SHORT);
 		MediaPlayer mp = MediaPlayer.create(this, R.raw.round);
 		toast.show();
-		mp.start();
-		
+		mp.start();		
 	}
 	
 	public void clickAction(View view, int x, int y) {		
@@ -79,9 +78,7 @@ public class Sea extends Activity {
 		score += 1;
 		if (score%10 == 0) {
 			levelNotification(level++, score);
-		}
-		
-		Log.d("morze", "hhhhh");
+		}		
 	}
 
 }

@@ -40,6 +40,7 @@
 		        android:layout_height="wrap_content"
 		        android:textSize="30dp"
 		        android:layout_weight="3"
+		        android:clickable="true"
 		        android:hint="Login" />	 
 	    
 	    </LinearLayout>
@@ -67,6 +68,7 @@
 		        android:layout_height="wrap_content"
 		        android:textSize="30dp"
 		        android:layout_weight="3"
+		        android:clickable="true"
 		        android:hint="Name" />	 
 	    
 	    </LinearLayout>
@@ -94,6 +96,7 @@
 		        android:layout_height="wrap_content"
 		        android:textSize="30dp"
 		        android:layout_weight="3"
+		        android:clickable="true"
 		        android:hint="Surname" />	 
 	    
 	    </LinearLayout>

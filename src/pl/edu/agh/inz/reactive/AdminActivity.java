@@ -17,8 +17,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.j256.ormlite.dao.Dao;
-
 public class AdminActivity extends Activity implements OnClickListener {
 
 	ListView list;
@@ -31,10 +29,8 @@ public class AdminActivity extends Activity implements OnClickListener {
 	Bundle bundle;
 	Intent cel;
 	
-	Dao<User, String> userDao;
-	DatabaseHelper databaseHelper = DatabaseHelper.getHelper(this);
-	AndroidBaseManager baseManager = new AndroidBaseManager(userDao);
-
+	DatabaseManager db;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_admin);
@@ -63,9 +59,18 @@ public class AdminActivity extends Activity implements OnClickListener {
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 				final String item = (String) parent.getItemAtPosition(position);
-				selected(item);								
+				selected(item);
+				activeText(true);
 			}
 		});
+		
+		db = new DatabaseManager(this);
+		for (User u: db.dbReturnUsers()) {
+			listItems.add(u.getLogin());
+			usersMap.put(u.getLogin(), u);
+			adapter.add(u.getLogin());
+			list.setAdapter(adapter);
+		}
 		
 	}
 
@@ -81,13 +86,13 @@ public class AdminActivity extends Activity implements OnClickListener {
 			loginUser(view);
 			break;
 		case R.id.etLogin:
-			activeText(view);
+			activeText(false);
 			break;
 		case R.id.etName:
-			activeText(view);
+			activeText(false);
 			break;
 		case R.id.etSurname:
-			activeText(view);
+			activeText(false);
 			break;
 		}
 	}
@@ -108,12 +113,8 @@ public class AdminActivity extends Activity implements OnClickListener {
 			information.setText("Dodano użytkownika "+user.getLogin());
 			information.setTextColor(Color.GREEN);
 			
-//			try {
-	//			baseManager.addNewUser(user);
-	//		} catch (SQLException e) {
-	//			// TODO Auto-generated catch block
-	//			e.printStackTrace();
-//		}
+			db.dbAddUser(user);
+
 		} else {
 			information.setText("Aby dodać nowego użytkownika wypełnij wszystkie pola");
 			information.setTextColor(Color.RED);
@@ -123,12 +124,19 @@ public class AdminActivity extends Activity implements OnClickListener {
 	}
 	
 	public void removeUser(View view) {
-		usersMap.remove(loginUser.getText().toString());
-		adapter.remove(loginUser.getText().toString());
+		User user = new User();
+		user.setLogin(loginUser.getText().toString());
+		user.setName(nameUser.getText().toString());
+		user.setSurname(surnameUser.getText().toString());
+		
+		usersMap.remove(user.getLogin());
+		adapter.remove(user.getLogin());
 		list.setAdapter(adapter);
-		information.setText("Usunięto użytkownika "+loginUser.getText().toString());
+		information.setText("Usunięto użytkownika "+user.getLogin());
 		information.setTextColor(Color.GREEN);
 		cleanEditText();
+		
+		db.dbRemoveUser(user);
 	}
 	
 	private void selected(String login) {
@@ -137,9 +145,7 @@ public class AdminActivity extends Activity implements OnClickListener {
 		nameUser.setText(user.getName());
 		surnameUser.setText(user.getSurname());
 		
-		bAddUser.setVisibility(1);
-		bLoginUser.setVisibility(0);
-		bRemoveUser.setVisibility(0);
+		activeText(true);
 				
 		information.setText("");
 	}
@@ -163,9 +169,15 @@ public class AdminActivity extends Activity implements OnClickListener {
 		surnameUser.setText("");
 	}
 	
-	private void activeText(View view) {
-		bAddUser.setVisibility(0);
-		bLoginUser.setVisibility(1);
-		bRemoveUser.setVisibility(1);
+	private void activeText(boolean fl) {
+		if (fl) {
+			bAddUser.setVisibility(View.INVISIBLE);
+			bLoginUser.setVisibility(View.VISIBLE);
+			bRemoveUser.setVisibility(View.VISIBLE);
+		} else {
+			bAddUser.setVisibility(View.VISIBLE);
+			bLoginUser.setVisibility(View.INVISIBLE);
+			bRemoveUser.setVisibility(View.INVISIBLE);
+		}
 	}
 }

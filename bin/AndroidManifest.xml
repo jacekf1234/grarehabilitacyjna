@@ -31,6 +31,9 @@
             android:name="pl.edu.agh.inz.reactive.Sea"
             android:screenOrientation="landscape" />
         <activity
+            android:name="pl.edu.agh.inz.reactive.Three"
+            android:screenOrientation="landscape" />  
+        <activity
             android:name="pl.edu.agh.inz.reactive.AdminActivity"
             android:screenOrientation="landscape" />   
         
