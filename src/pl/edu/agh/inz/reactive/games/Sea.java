@@ -1,4 +1,4 @@
-package pl.edu.agh.inz.reactive;
+package pl.edu.agh.inz.reactive.games;
 
 import java.util.Random;
 
@@ -16,8 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Sea extends Activity {
-		
+public class Sea extends Activity implements Game {
+	
 	ImageView object;
 	RelativeLayout layout;
 	RelativeLayout.LayoutParams params;

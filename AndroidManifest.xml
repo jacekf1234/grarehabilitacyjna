@@ -28,10 +28,10 @@
             android:name="org.achartengine.GraphicalActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name="pl.edu.agh.inz.reactive.Sea"
+            android:name="pl.edu.agh.inz.reactive.games.Sea"
             android:screenOrientation="landscape" />
         <activity
-            android:name="pl.edu.agh.inz.reactive.Three"
+            android:name="pl.edu.agh.inz.reactive.games.Three"
             android:screenOrientation="landscape" />  
         <activity
             android:name="pl.edu.agh.inz.reactive.AdminActivity"

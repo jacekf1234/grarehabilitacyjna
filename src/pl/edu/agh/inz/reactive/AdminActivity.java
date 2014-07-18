@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -101,7 +100,6 @@ public class AdminActivity extends Activity implements OnClickListener {
 			adapter.add(u.getLogin());
 			list.setAdapter(adapter);
 		}
-		
 	}
 
 	public void onClick(View view) {

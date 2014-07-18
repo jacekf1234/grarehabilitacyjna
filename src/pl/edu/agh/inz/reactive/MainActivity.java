@@ -1,6 +1,8 @@
 package pl.edu.agh.inz.reactive;
 
 import pl.edu.agh.inz.gra1.R;
+import pl.edu.agh.inz.reactive.games.Sea;
+import pl.edu.agh.inz.reactive.games.Three;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,16 +23,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	String labelUser;
 	EditText etPassword;
 
-	private void runSea() {
-		Intent intent = new Intent(MainActivity.this, Sea.class);
-		startActivity(intent);
-	}
-
-	private void runThree() {
-		Intent intent = new Intent(MainActivity.this, Three.class);
-		startActivity(intent);
-	}
-
 	private void wyswietlWykres(View view) {
 		LineGraph line = new LineGraph();
 		Intent intencja = line.getIntent(this);
@@ -49,14 +41,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			labelUser = "Gość";
 		}
 
-		View gra1 = this.findViewById(R.id.imgvGra1);
-		gra1.setOnClickListener(this);
-		View gra2 = this.findViewById(R.id.imgvGra2);
-		gra2.setOnClickListener(this);
-		View wczytajWyniki = this.findViewById(R.id.button3);
-		wczytajWyniki.setOnClickListener(this);
-		View wyloguj = this.findViewById(R.id.button5);
-		wyloguj.setOnClickListener(this);
+		View seaGame = this.findViewById(R.id.imgvGra1);
+		seaGame.setOnClickListener(new GameSelectionListener(this, Sea.class));
+		View threeGame = this.findViewById(R.id.imgvGra2);
+		threeGame.setOnClickListener(new GameSelectionListener(this, Three.class));
+		
+		View showGraph = this.findViewById(R.id.button3);
+		showGraph.setOnClickListener(this);
+		View logout = this.findViewById(R.id.button5);
+		logout.setOnClickListener(this);
 		TextView labelTextView = (TextView) this.findViewById(R.id.tvLoginUser);
 		labelTextView.setText(labelUser);
 
@@ -64,41 +57,37 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.imgvGra1:
-			runSea();
-			break;
-		case R.id.imgvGra2:
-			runThree();
-			break;
 		case R.id.button3:
 			wyswietlWykres(v);
 			break;
 		case R.id.button5:
-
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			LayoutInflater inflater = this.getLayoutInflater();
-			builder.setView(inflater.inflate(R.layout.dialog_password, null))
-					.setPositiveButton("OK",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									if (etPassword.getText().toString()
-											.equals("admin")) {
-										goLogin();
-									}
-								}
-							});
-			AlertDialog dialog = builder.create();
-			dialog.show();
-			etPassword = (EditText) dialog.findViewById(R.id.password);
+			passwordPopup();
 			break;
 		}
 	}
+	
+	public void passwordPopup() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		LayoutInflater inflater = this.getLayoutInflater();
+		builder.setView(inflater.inflate(R.layout.dialog_password, null))
+				.setPositiveButton("OK",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int id) {
+								if (etPassword.getText().toString()
+										.equals("admin")) {
+									goLogin();
+								}
+							}
+						});
+		AlertDialog dialog = builder.create();
+		dialog.show();
+		etPassword = (EditText) dialog.findViewById(R.id.password);
+	}
 
 	private void goLogin() {
-		Intent intencja = new Intent(this, AdminActivity.class);
+		Intent intent = new Intent(this, AdminActivity.class);
 		finish();
-		startActivity(intencja);
-
+		startActivity(intent);
 	}
 }
